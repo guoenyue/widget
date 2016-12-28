@@ -1,0 +1,29 @@
+.map-note {
+    position: relative;
+    padding: 10px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    .color-intro {
+        width: 170px;
+        label {
+            margin-right: 10px;
+            margin-left: 10px;
+            display: inline-block;
+            float: left;
+        }
+        .color-item {
+            float: left;
+            li {
+                width: 12px;
+                height: 12px;
+                display: inline-block;
+            }
+        }
+    }
+}

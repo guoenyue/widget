@@ -1,0 +1,108 @@
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+html,
+body,
+div,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #ddd;
+}
+html,
+body,
+input,
+textarea {
+    font-family: 'Microsoft Yahei', 'Open Sans', Helvetica, Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+ul li {
+    list-style: none;
+}
+.text-right {
+    text-align: right;
+}
+.text-indent {
+    text-indent: 1em;
+}
+.row {
+    margin-right: -10px;
+    margin-left: -10px;
+    overflow: hidden;
+    .col-1 {
+        width: 100%;
+        float: left;
+    }
+    .col-2 {
+        width: 50%;
+        float: left;
+    }
+    .col-3 {
+        width: 33.33%;
+        float: left;
+    }
+}
+/* animation 无继承属性 */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: .3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: .3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+.douer {
+    width: 850px;
+    margin: 0 auto;
+}
