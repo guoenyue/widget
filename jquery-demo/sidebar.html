@@ -1,0 +1,70 @@
+<div class="side-nav">
+    <ul class="nav-items">
+        <li class="nav-item">
+            <a href="javascript:void(0);">
+                <i class="iconfont icon-pie"></i>
+                <span>站点信息</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);">
+                <i class="iconfont icon-tools"></i>
+                <span>站点配置</span>
+                <i class="iconfont more icon-close"></i>
+            </a>
+            <dl class="nav-child">
+                <dd>
+                    <a href="javascript:void(0);" data-href="<?= U('/Admin/Index/site') ?>">
+                        <i class="iconfont icon-setting"></i>
+                        <cite>基本设置</cite>
+                    </a>
+                </dd>
+                <dd>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont icon-plan"></i>
+                        <cite>系统公告</cite>
+                    </a>
+                </dd>
+                <dd>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont icon-link"></i>
+                        <cite>友情链接</cite>
+                    </a>
+                </dd>
+            </dl>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);">
+                <i class="iconfont icon-authority"></i>
+                <span>权限管理</span>
+                <i class="iconfont more icon-close"></i>
+            </a>
+            <dl class="nav-child">
+                <dd>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont icon-runtime"></i>
+                        <cite>管理权限</cite>
+                    </a>
+                </dd>
+                <dd>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont icon-mnguser"></i>
+                        <cite>用户权限</cite>
+                    </a>
+                </dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<script>
+    $('.side-nav .nav-items').on('click', '.nav-item', function() {
+        var $this = $(this),
+            $prev = $('.nav-item');
+        $this
+            .find('a > .more').removeClass('icon-close').addClass('icon-open').end()
+            .find('.nav-child').slideToggle();
+        $prev.not($this)
+            .find('a > .more').removeClass('icon-open').addClass('icon-close').end()
+            .find('.nav-child').slideUp();
+    });
+</script>

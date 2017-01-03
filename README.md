@@ -4,5 +4,6 @@
 - heatmap  
 仿github活跃热图
 
-- left2delete  
-左划删除 
+- jQuery-demo  
+一些常用的jQuery的小demo  
+    - sidebar 侧边栏
