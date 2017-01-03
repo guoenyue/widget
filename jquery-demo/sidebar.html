@@ -57,14 +57,14 @@
     </ul>
 </div>
 <script>
-    $('.side-nav .nav-items').on('click', '.nav-item', function() {
+    $('.side-nav .nav-items').on('click', '.nav-item > a', function() {
         var $this = $(this),
-            $prev = $('.nav-item');
+            $prev = $('.nav-item > a');
         $this
-            .find('a > .more').removeClass('icon-close').addClass('icon-open').end()
-            .find('.nav-child').slideToggle();
+            .find('.more').removeClass('icon-close').addClass('icon-open').end()
+            .parent().find('.nav-child').slideToggle();
         $prev.not($this)
-            .find('a > .more').removeClass('icon-open').addClass('icon-close').end()
-            .find('.nav-child').slideUp();
+            .find('.more').removeClass('icon-open').addClass('icon-close').end()
+            .parent().find('.nav-child').slideUp();
     });
 </script>
