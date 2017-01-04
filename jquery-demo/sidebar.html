@@ -1,70 +1,131 @@
-<div class="side-nav">
-    <ul class="nav-items">
-        <li class="nav-item">
-            <a href="javascript:void(0);">
-                <i class="iconfont icon-pie"></i>
-                <span>站点信息</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:void(0);">
-                <i class="iconfont icon-tools"></i>
-                <span>站点配置</span>
-                <i class="iconfont more icon-close"></i>
-            </a>
-            <dl class="nav-child">
-                <dd>
-                    <a href="javascript:void(0);" data-href="<?= U('/Admin/Index/site') ?>">
-                        <i class="iconfont icon-setting"></i>
-                        <cite>基本设置</cite>
-                    </a>
-                </dd>
-                <dd>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>sidebar侧边栏</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            ul li {
+                list-style: none;
+            }
+            .side-nav {
+                margin-top: 15px;
+                border-top: 1px solid #64c775;
+            }
+            .side-nav .nav-items {
+                padding-bottom: 20px;
+            }
+            .side-nav .nav-items .nav-item {
+                border-bottom: 1px solid #fefefe;
+                background-color: #4fbb60;
+            }
+            .side-nav .nav-items .nav-item a {
+                position: relative;
+                padding: 0 10px;
+                font-size: 16px;
+                color: #fefefe;
+                line-height: 2;
+                display: block;
+            }
+            .side-nav .nav-items .nav-item a .icon-open,
+            .side-nav .nav-items .nav-item a .icon-close {
+                position: absolute;
+                top: 6px;
+                right: 10px;
+                font-size: 16px;
+            }
+            .side-nav .nav-items .nav-item .nav-child {
+                background-color: #196348;
+                display: none;
+            }
+            .side-nav .nav-items .nav-item .nav-child dd {
+                border-left: 5px solid transparent;
+                border-bottom: 1px solid #64c775;
+            }
+            .side-nav .nav-items .nav-item .nav-child dd.active,
+            .side-nav .nav-items .nav-item .nav-child dd:hover {
+                border-left: 5px solid #4fbb60;
+            }
+            .side-nav .nav-items .nav-item .nav-child a {
+                padding-left: 20px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="side-nav">
+            <ul class="nav-items">
+                <li class="nav-item">
                     <a href="javascript:void(0);">
-                        <i class="iconfont icon-plan"></i>
-                        <cite>系统公告</cite>
+                        <i class="iconfont icon-pie"></i>
+                        <span>站点信息</span>
                     </a>
-                </dd>
-                <dd>
+                </li>
+                <li class="nav-item">
                     <a href="javascript:void(0);">
-                        <i class="iconfont icon-link"></i>
-                        <cite>友情链接</cite>
+                        <i class="iconfont icon-tools"></i>
+                        <span>站点配置</span>
+                        <i class="iconfont more icon-close"></i>
                     </a>
-                </dd>
-            </dl>
-        </li>
-        <li class="nav-item">
-            <a href="javascript:void(0);">
-                <i class="iconfont icon-authority"></i>
-                <span>权限管理</span>
-                <i class="iconfont more icon-close"></i>
-            </a>
-            <dl class="nav-child">
-                <dd>
+                    <dl class="nav-child">
+                        <dd>
+                            <a href="javascript:void(0);" data-href="<?= U('/Admin/Index/site') ?>">
+                                <i class="iconfont icon-setting"></i>
+                                <cite>基本设置</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);">
+                                <i class="iconfont icon-plan"></i>
+                                <cite>系统公告</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);">
+                                <i class="iconfont icon-link"></i>
+                                <cite>友情链接</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="nav-item">
                     <a href="javascript:void(0);">
-                        <i class="iconfont icon-runtime"></i>
-                        <cite>管理权限</cite>
+                        <i class="iconfont icon-authority"></i>
+                        <span>权限管理</span>
+                        <i class="iconfont more icon-close"></i>
                     </a>
-                </dd>
-                <dd>
-                    <a href="javascript:void(0);">
-                        <i class="iconfont icon-mnguser"></i>
-                        <cite>用户权限</cite>
-                    </a>
-                </dd>
-            </dl>
-        </li>
-    </ul>
-</div>
-<script>
-    $('.side-nav .nav-items').on('click', '.nav-item > a', function() {
-        var $this = $(this),
-            $prev = $('.nav-item > a');
-        $this
-            .find('.more').removeClass('icon-close').addClass('icon-open').end()
-            .parent().find('.nav-child').slideToggle();
-        $prev.not($this)
-            .find('.more').removeClass('icon-open').addClass('icon-close').end()
-            .parent().find('.nav-child').slideUp();
-    });
-</script>
+                    <dl class="nav-child">
+                        <dd>
+                            <a href="javascript:void(0);">
+                                <i class="iconfont icon-runtime"></i>
+                                <cite>管理权限</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:void(0);">
+                                <i class="iconfont icon-mnguser"></i>
+                                <cite>用户权限</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script src="jquery.js"></script>
+    <script>
+        $('.side-nav .nav-items').on('click', '.nav-item > a', function() {
+            var $this = $(this),
+                $prev = $('.nav-item > a');
+            $this
+                .find('.more').removeClass('icon-close').addClass('icon-open').end()
+                .parent().find('.nav-child').slideToggle();
+            $prev.not($this)
+                .find('.more').removeClass('icon-open').addClass('icon-close').end()
+                .parent().find('.nav-child').slideUp();
+        });
+    </script>
+</html>
