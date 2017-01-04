@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>城市下拉定位</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		dl dd {
+			float: left;
+		}
+		.header_dh {
+			height: 70px;
+			background-color: #333;
+		}
+		.header_dh .list{
+		    float: left;
+		    margin: 0 20px;
+		    line-height: 70px;
+		}
+		.header_dh .list a {
+		    color: #fff;
+		    font-size: 18px;
+		    text-decoration: none;
+		}
+		.header_dh .list .list-child {
+		    width: 500px;
+		    padding: 20px;
+		    border: 1px solid #e1e1e1;
+		    background-color: #fff;
+		    overflow: hidden;
+		    display: none;
+		}
+		.header_dh .list .list-child dd {
+		    margin: 0 20px;
+		    line-height: 2.5;
+		    cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="header_dh clearfix">
+        <div class="list">
+            <a href="javascript:void(0);" id="city-selected">哈尔滨∨</a>
+            <dl class="list-child">
+                <dd>北京市</dd>
+                <dd>上海市</dd>
+                <dd>广州市</dd>
+                <dd>深圳市</dd>
+                <dd>南京市</dd>
+                <dd>杭州市</dd>
+                <dd>天津市</dd>
+                <dd>重庆市</dd>
+                <dd>成都市</dd>
+                <dd>青岛市</dd>
+                <dd>苏州市</dd>
+                <dd>无锡市</dd>
+            </dl>
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+    	$('#city-selected')
+        .on('click', function() { $(this).parent().find('.list-child').slideToggle(); })
+        
+        .parent().find('.list-child').on('click', 'dd', function() {
+            $('#city-selected').text($(this).text() + '∨');
+            $(this).css('color', '#2b92d0').siblings().css('color', '#333');
+            $(this).parent().slideUp();
+        });
+    </script>
+</body>
+</html>
