@@ -6,4 +6,5 @@
 
 - jQuery-demo  
 一些常用的jQuery的小demo  
-    - sidebar 侧边栏
+    - sidebar 侧边栏  
+    - city-selected 城市下拉选择定位
