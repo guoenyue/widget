@@ -1,0 +1,11 @@
+html,body {
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (orientation: portrait){
+    /*竖屏模式*/
+}
+@media screen and (orientation: landscape){
+    /*横屏模式*/
+}
