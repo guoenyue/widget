@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>github heatmap data</title>
+    </head>
+    <body>
+
+    </body>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url: 'https://github.com/users/umiyo/contributions',
+            type: 'get',
+            dataType: 'jsonp',
+            success: function(result) {
+                console.log(typeof result);
+            }.bind(this),
+            error: function(res) {
+                console.log(res);
+            }
+        })
+    </script>
+</html>

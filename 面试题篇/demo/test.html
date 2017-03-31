@@ -17,13 +17,36 @@
             float: left;
             background-color: #eee
         }
+        ul li div {
+            display: inline-block;
+        }
+        .circle {
+            width: 30px;
+            height: 30px;
+            background-color: #333;
+            border-radius: 50%;
+        }
+
         </style>
     </head>
     <body>
-        <div class="div">
+        <!-- <div class="div">
             <div class="sub" style="height:100px;"></div>
             <div class="sub" style="height:200px"></div>
-        </div>
+        </div> -->
+        <ul>
+            <li>
+                <div class="circle">
 
+                </div>
+                <div class="content">
+                    <p>内容一</p>
+                    <p>内容二</p>
+                    <p>内容三</p>
+                    <p>内容四</p>
+                </div>
+            </li>
+        </ul>
     </body>
+    <script src="toSum.js" charset="utf-8"></script>
 </html>

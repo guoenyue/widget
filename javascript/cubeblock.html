@@ -1,0 +1,463 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>俄罗斯方块</title>
+
+</head>
+<body onload="createMap()"  onkeydown="controlDirection()">
+ <div style="text-align:center;">
+            <br/>
+            <table >
+                <tr>
+                    <td >
+                        <div id="map_div" style="border:gray solid 1px">
+                        </div>
+                    </td>
+                    <td>
+                        <div id="message_div" style="border:gray solid 1px; text-align:center;">
+                            <br/><br/><font color="red"><b>俄罗斯方块</b></font><br/><br/>
+
+                           <div id="preview_div">
+
+                           </div><br />
+                           游戏状态：<span id="tip">未开始</span>
+                           <br />
+
+                            开始时间:<input type="text" id="startDate" readonly="readonly" style="width:80px"/><br/><br/>
+                            现在时间:<input type="text" id="nowDate" readonly="readonly" style="width:80px"/><br/><br/>
+                            所得分数：<input type="text" id="TotalScores" readonly="readonly" value="0" style="width:50px" />
+                            <br /><br />
+                            难度系数：<input type="text" id="hardnum" readonly="readonly" value="1" style="width:50px;" />
+                            <br /><br />
+                            按enter键控制游戏状态；<br />
+                            小键盘方向键和 W S A D 控制方向。
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+    </div>
+</body>
+<script type="text/javascript" language="javascript">
+//单元格宽度
+var cellwidth = 15;
+//单元格个数
+var cellcount_x = 18
+var cellcount_y = 30;
+//正在掉落的方块的ID
+var currentDroper = new Array();
+//下个掉落的方块ID
+var nextDorper = new Array();
+//预览的方块ID
+var preDroper = new Array();
+//记录黑色单元格集合
+var Blacker = new Array();
+//方块掉落的速度,数字越大，速度越慢
+var speed = 500;
+//游戏是否开始
+var started = false;
+//游戏状态
+var state = 0;//0:未开始；1:进行中；2:暂停；3:结束
+//定时器
+var timer = null;
+function createMap()
+{
+    createTable(0,0,cellcount_x,cellcount_y,document.getElementById("map_div"));//初始化游戏块
+
+    document.getElementById("message_div").style.width="180px";
+    document.getElementById("message_div").style.height=document.getElementById("map_div").offsetHeight-2+"px";
+
+    createTable(100,100,104,104,document.getElementById("preview_div"));//初始化预览块
+
+    var x = Math.round(cellcount_x / 2);
+    createDroper(x+"_0");
+}
+
+//绘制表格
+function createTable(i,j,x,y,objDiv)
+{
+    var objtable = document.createElement("table");
+    objtable.border = "1";
+    objtable.cellspacing="0" ;
+
+    objtable.style.height = cellwidth * (y-j) +"px";
+    objtable.style.width = cellwidth * (x-i) + "px";
+
+    var objtbody = document.createElement("tbody");
+
+    for(var m = i;m < y;m++)
+    {
+        var objtr = document.createElement("tr");
+        objtr.id = m;
+        for(var n = j;n < x;n++)
+        {
+            var objtd = document.createElement("td");
+            objtd.style.border = "gray solid 1px"
+            objtd.id = n + "_" + m;
+
+            var txt=document.createTextNode(" ");
+            objtd.appendChild(txt);
+            objtr.appendChild(objtd);
+        }
+        objtbody.appendChild(objtr);
+    }
+    objtable.appendChild(objtbody);
+    objDiv.appendChild(objtable);
+}
+
+//数组是否存在某元素
+function isExist(array,key)
+{
+    for(var i = 0;i < array.length;i++)
+    {
+        if(key == array[i])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+//初始化掉落的方块
+function createDroper(currentindex)
+{
+    var x = currentindex.split('_')[0];
+    var y = currentindex.split('_')[1];
+
+    var n = Math.ceil(Math.random() * 4);
+
+    if(n == 1 && x < 3)
+    {
+        x = x - 0 + 1;
+    }
+    else if(n == 2 &&  x >= 1)
+    {
+        x = x - 1;
+    }
+    else if(n == 3 && y >= 1)
+    {
+        y = y - 1;
+    }
+    else if(n== 4 && y < 3)
+    {
+        y = y - 0 + 1;
+    }
+    else{}
+    var _id=x +"_"+ y;
+    if(!isExist(nextDorper,_id))
+    {
+        if(nextDorper.length >= 4)
+        {
+            return nextDorper;
+        }
+        else
+        {
+            nextDorper.push(_id);
+            createDroper(_id);
+        }
+    }
+    else
+    {
+        createDroper(_id);
+    }
+}
+//设置游戏时间
+function setNowDate()
+{
+    document.getElementById("nowDate").value = new Date().toLocaleTimeString();
+    setTimeout("setNowDate()",1000);
+}
+
+//控制方向
+function controlDirection(event)
+{
+    var myEvent = event || window.event;
+    var keycode = myEvent.keyCode;   //获取键盘键值
+    if(keycode != 13 && keycode != 37 && keycode != 65 && keycode != 38 && keycode != 87 && keycode != 39 && keycode != 68 && keycode != 40 && keycode != 83)
+    {
+        return ;
+    }
+    //按enter键开始
+    if(keycode == 13)
+    {
+        if(started == false)
+        {
+            started = true;
+            state = 1;
+            document.getElementById("tip").innerHTML = "进行中";
+            preView();
+
+            document.getElementById("startDate").value = new Date().toLocaleTimeString();
+            setNowDate();
+            Droping();
+        }
+        else
+        {
+            if(state == 1)
+            {
+                state = 2;
+                window.clearTimeout(timer);
+                document.getElementById("tip").innerHTML = "暂停中";
+            }
+            else
+            {
+                state = 1;
+                document.getElementById("tip").innerHTML = "进行中";
+                timer = window.setTimeout("Droping()",speed);
+            }
+        }
+        return;
+    }
+
+    var oldDroper = currentDroper;
+    clearOld(currentDroper);
+    var temp;
+    //左移动
+    if(keycode == 37 || keycode == 65)
+    {
+        temp = updateDropingDroper("left");
+    }
+    //改变方块掉落方向
+    else if(keycode == 38 || keycode == 87)
+    {
+       temp = currentDroper.toString().split(',');
+        //先算四个点的中心点，则这四个点围绕中心旋转90度。
+        var cx = Math.round(((temp[0].split('_')[0]-0) + (temp[1].split('_')[0]-0) + (temp[2].split('_')[0]-0) + (temp[3].split('_')[0]-0))/4);
+        var cy = Math.round(((temp[0].split('_')[1]-0) + (temp[1].split('_')[1]-0) + (temp[2].split('_')[1]-0) + (temp[3].split('_')[1]-0))/4);
+        //旋转的主要算法. 可以这样分解来理解。
+        //先假设围绕源点旋转。然后再加上中心点的坐标。
+        for(i=0; i<4; i++)
+        {
+            var x =cx+cy-currentDroper[i].split('_')[1];
+            var y = cy-cx+(currentDroper[i].split('_')[0]-0);
+            temp[i] = x + "_" + y;
+        }
+    }
+    //右移动
+    else if(keycode == 39 || keycode == 68)
+    {
+        temp = updateDropingDroper("right");
+    }
+    //加速
+    else if(keycode == 40 || keycode == 83)
+    {
+        temp = updateDropingDroper("down");
+    }
+
+    //检查下个坐标是否合法
+    if(checkCurrentDroper(temp))
+    {
+        currentDroper = temp;
+    }
+    else
+    {
+        currentDroper = oldDroper;
+    }
+    paintNew(currentDroper);
+}
+//方块掉落
+function Droping()
+{
+    var oldDroper = currentDroper.toString().split(',');
+    clearOld(currentDroper);
+    var temp = updateDropingDroper("down");
+    if(checkCurrentDroper(temp))
+    {
+        currentDroper = temp;
+        paintNew(temp);
+    }
+    else
+    {
+        paintNew(oldDroper);
+        getScores(oldDroper);
+
+        preView();
+    }
+    timer = window.setTimeout("Droping()",speed);
+    //window.setTimeout("Droping()",speed);
+}
+
+//预览方块
+function preView()
+{
+    if(checkCurrentDroper(nextDorper))
+    {
+        currentDroper = nextDorper;
+    }
+    else
+    {
+        state = 3;
+        document.getElementById("tip").innerHTML = "已结束";
+        alert("你输啦  ( ⊙ o ⊙ )");
+        window.location.href = window.location.href;
+    }
+    currentDroper = nextDorper.toString().split(',');
+
+    nextDorper = new Array();
+    clearOld(preDroper);
+    createDroper("0_0");
+    preDroper = new Array();
+
+    for(var i = 0;i < nextDorper.length;i++)
+    {
+        var x = nextDorper[i].split('_')[0]-0+100;
+        var y = nextDorper[i].split('_')[1]-0+100;
+
+        var x1 = nextDorper[i].split('_')[0]-0+cellcount_x/2;
+        var y1 = nextDorper[i].split('_')[1];
+
+        preDroper[i] = x + "_" + y;
+        nextDorper[i] = x1 + "_" + y1;
+    }
+
+    paintNew(preDroper);
+}
+
+//销分的方法
+function getScores(nowDrop)
+{
+    var rowsId = "";
+    for(var w = 0;w < nowDrop.length;w++)
+    {
+        if(rowsId.indexOf(nowDrop[w].split('_')[1]+",",0) == -1)
+        {
+            rowsId += nowDrop[w].split('_')[1]+",";
+        }
+    }
+    rowsId = rowsId.substr(0,rowsId.length-1);
+    var rows = rowsId.split(',').sort().reverse();
+
+    for(var i = 0;i < rows.length;i++)
+    {
+        var row = document.getElementById(rows[i]).cells;
+        var isfull = true;//记录是否满格了
+
+        for(var j = 0;j < row.length;j++)
+        {
+            if(row[j].style.backgroundColor != "black")
+            {
+                isfull = false;
+                break;
+            }
+        }
+
+        if(isfull)
+        {
+            document.getElementById("TotalScores").value = document.getElementById("TotalScores").value - 0 + 10;//得分
+            if((document.getElementById("TotalScores").value - 0 )%100 == 0)
+            {
+                speed = speed - 100 > 0 ? speed - 100 : speed /2;
+                document.getElementById("hardnum").value = document.getElementById("hardnum").value - 0 + 1;
+            }
+            if(document.getElementById("TotalScores").value - 700 >= 0)
+            {
+                alert("赢啦，^_^");
+                state = 3;
+                document.getElementById("tip").innerHTML = "已结束";
+                window.location.href = window.location.href;
+            }
+            //得分后销掉已满的单元格
+
+            for(var k = 0;k < row.length;k++)
+            {
+                row[k].style.backgroundColor = "";
+            }
+
+            Blacker = new Array();
+            isBlack(rows[i]);
+            //将未销掉的向下移动
+            var oldBlack = Blacker.toString().split(',');
+            for(var l = 0;l < Blacker.length;l++)
+            {
+                var y = (Blacker[l].split('_')[1]- 0) + 1;
+                var x = Blacker[l].split('_')[0] ;
+                Blacker[l] = x + "_" + y;
+            }
+            clearOld(oldBlack);
+            paintNew(Blacker);
+            i -= 1;//销行后继续检查此行是否可继续销
+        }
+    }
+}
+
+//递归检测所销行上面的方块颜色
+function isBlack(trindex)
+{
+    var y = trindex - 1;
+    if(y >= 0 && y < cellcount_y )
+    {
+        for(var i = 0;i < cellcount_x;i++)
+        {
+            var x = i;
+            var nextindex = x + "_" + y;
+            if(document.getElementById(nextindex).style.backgroundColor == "black")
+            {
+                Blacker.push(nextindex);
+            }
+        }
+        isBlack(y);
+    }
+}
+
+//清空方块的坐标
+function clearOld(oldDroper)
+{
+    for(var i = 0;i < oldDroper.length;i++)
+    {
+        document.getElementById(oldDroper[i]).style.backgroundColor = "";
+    }
+}
+//绘制方块的坐标
+function paintNew(newDroper)
+{
+    for(var i = 0;i < newDroper.length;i++)
+    {
+        document.getElementById(newDroper[i]).style.backgroundColor = "black";
+    }
+}
+
+//更新活动方块数组
+function updateDropingDroper(direction)
+{
+    var x,y;
+    var objDorper = new Array();
+    for(var i = 0;i < currentDroper.length;i++)
+    {
+        if(direction == "left")
+        {
+            x = currentDroper[i].split('_')[0]-1;
+            y = currentDroper[i].split('_')[1];
+        }
+        else if(direction == "right")
+        {
+            x = currentDroper[i].split('_')[0]-0+1;
+            y = currentDroper[i].split('_')[1];
+        }
+        else
+        {
+            x = currentDroper[i].split('_')[0];
+            y = currentDroper[i].split('_')[1] - 0 + 1;
+        }
+        objDorper.push(x + "_" + y);
+    }
+    return objDorper;
+}
+//检查方块是否合法
+function checkCurrentDroper(droper)
+{
+    for(var i = 0;i < droper.length;i++)
+    {
+        var x = droper[i].split('_')[0];
+        var y = droper[i].split('_')[1];
+        if(x < 0 || x > cellcount_x - 1 || y < 0 || y > cellcount_y - 1)
+        {
+            return false;
+        }
+        if(document.getElementById(droper[i]).style.backgroundColor == "black")
+        {
+            return false;
+        }
+    }
+    return true;
+}
+</script>
+</html>
