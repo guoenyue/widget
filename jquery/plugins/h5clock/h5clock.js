@@ -74,7 +74,7 @@
              var element = document.createElement('div');
              element.className = 'minute-text';
              element.innerHTML = (n < 10 ? '0' : '') + n;
-             position(element, n / 60, 135);
+             position(element, n / 60, 124);
              dynamic.appendChild(element);
          }
          // 绘制分线
@@ -92,7 +92,7 @@
              var element = document.createElement('div');
              element.className = 'hour-text hour-' + n;
              element.innerHTML = n;
-             position(element, n / 12, 105);
+             position(element, n / 12, 96);
              dynamic.appendChild(element);
          }
          // 确定位置
