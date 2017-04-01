@@ -10,8 +10,8 @@
  *      round2
  *      round3
  **/
- $(function () {
-     var clock = $('#h5clock');
+ window.onload = function() {
+     var clock = document.getElementById('h5clock');
      mecClock(clock);
 
      function mecClock(container) {
@@ -22,9 +22,9 @@
          // 定位div
          var center = document.createElement('div');
          center.className = 'center';
-         container.html(center);
+         container.appendChild(center);
          // 数字
-         var dynamic       = document.createElement('div');
+         var dynamic = document.createElement('div');
          dynamic.className = 'dynamic';
          center.appendChild(dynamic);
          // 中心环
@@ -134,4 +134,4 @@
          for (var i = 1; i <= 12; i ++) hour(i);
          animate();
      }
- });
+ };
