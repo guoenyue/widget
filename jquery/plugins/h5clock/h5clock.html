@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>H5clock</title>
+        <style media="screen">
+            #h5clock {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                background-color: #fbfbfb;
+            }
+            #h5clock .center {
+                width: 0;
+                height: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+            #h5clock .center .expand {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translate(-50%, -50%);
+            }
+            #h5clock .center .round {
+                border-radius: 296px;
+            }
+            #h5clock .center .circle1 {
+                width: 12px;
+                height: 12px;
+                background-color: #2e3c49;
+            }
+            #h5clock .center .circle2 {
+                width: 8px;
+                height: 8px;
+                background-color: #fa9f22;
+            }
+            #h5clock .center .circle3 {
+                width: 4px;
+                height: 4px;
+                background-color: #333;
+            }
+            #h5clock .center .anchor {
+                position: absolute;
+                width: 0;
+                height: 0;
+                top: 0;
+                left: 0;
+            }
+            #h5clock .center .element {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            #h5clock .center .dynamic .anchor .minute-line {
+                background: #293642;
+                width: 1px;
+                height: 9px;
+                transform: translate(-50%,-100%) translateY(-131px);
+                opacity: 0.34;
+            }
+            #h5clock .center .dynamic .minute-text {
+                position: absolute;
+                font: 12px Avenir Next, Helvetica, Arial, sans-serif;
+                color: #293642;
+                transform: translate(-50%,-50%);
+            }
+            #h5clock .center .dynamic .hour-text {
+                position: absolute;
+                font: 36px Hei, Helvetica, Arial, sans-serif;
+                color: #293642;
+                transform: translate(-50%,-50%);
+            }
+            #h5clock .center .hour {
+                transform: rotate(304.5deg);
+            }
+            #h5clock .center .thin-hand {
+                width: 4px;
+                height: 50px;
+                background-color: #293642;
+                transform: translate(-50%, -100%);
+            }
+            #h5clock .center .fat-hand {
+                width: 10px;
+                height: 57px;
+                background-color: #293642;
+                border-radius: 10px;
+                transform: translate(-50%, -100%) translateY(-18px);
+            }
+            #h5clock .center .minute {
+                transform: rotate(54deg);
+            }
+            #h5clock .center .minute .minute-hand {
+                height: 112px;
+            }
+            #h5clock .center .second {
+                transform: rotate(180deg);
+            }
+            #h5clock .center .second .second-hand {
+                width: 2px;
+                height: 164px;
+                background-color: #fa9f22;
+                transform: translate(-50%, -100%) translateY(24px);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="h5clock" id="h5clock"></div>
+    </body>
+    <script src="../../jquery.js" charset="utf-8"></script>
+    <script src="h5clock.js" charset="utf-8"></script>
+</html>
