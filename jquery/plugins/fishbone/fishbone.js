@@ -84,6 +84,7 @@
               var offsetLeft=$('.fish-main').scrollLeft;
               var oLine=$('.fish-line');
               console.log("移动后");
+                console.log(offsetLeft,oLine-main.width());
               if(offsetLeft<oLine-main.width()){
                 scrollR();
                 console.log("没移动完");
@@ -97,6 +98,7 @@
               var offsetLeft=$('.fish-main').scrollLeft;
               var oLine=$('.fish-line');
               console.log("移动后");
+              console.log(offsetLeft);
               if(offsetLeft>0){
                 scrollL();
                 console.log("没移动完");
