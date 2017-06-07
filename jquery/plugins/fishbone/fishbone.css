@@ -35,7 +35,7 @@ a:focus, a:hover {
 }
 .js-fishbone .fish-main {
   padding: 30px 0;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .js-fishbone .fish-data {
   position: relative;
