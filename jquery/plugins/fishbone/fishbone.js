@@ -98,7 +98,7 @@
           },closeSlide);
           $('.js-fishbone .slide-prev').hover(function scrollL() {
             console.log("移动");
-            slideKey=false;
+            slideKey=true;
             $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
               var offsetLeft=$('.fish-main').scrollLeft();
               var oLine=$('.fish-line');
