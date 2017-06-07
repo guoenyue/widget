@@ -82,7 +82,7 @@
           console.log("移动");
             $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
               var offsetLeft=$('.fish-main').scrollLeft();
-              var oLine=$('.fish-line');
+              var oLine=parseInt($('.fish-line').width());
               console.log("移动后");
                 console.log(offsetLeft,oLine-parseInt(main.width()));
               if(offsetLeft<oLine-parseInt(main.width())){
