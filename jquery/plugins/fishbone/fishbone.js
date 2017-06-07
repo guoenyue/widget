@@ -65,7 +65,7 @@
         bottom.append(bul);
         main.append(top, $('<div class="fish-line"></div>'), bottom, prev, next);
         this.el.append(main).addClass('js-fishbone');
-
+        
         var _ = this;
         $('.js-fishbone .item').hover(function() {
           $(this).css('border-color', _.settings.hovers[0])
@@ -78,7 +78,11 @@
         $('.js-fishbone .fish-slide').hover(function() {
           console.log('hover');
         })
-
+        prev.on("mouseenter",function(){
+          $(".fishmain").animate({"scrollLeft":0})
+        }).on("mouseleave",function(){
+          $(".fishmain").stop();
+        })
         return this.reasonably();
       },
       reasonably: function() {
