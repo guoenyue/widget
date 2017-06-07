@@ -102,7 +102,6 @@
               }
             });
            });
-        })
         return this.reasonably();
       },
       reasonably: function() {
