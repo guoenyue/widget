@@ -75,15 +75,29 @@
             .find('em').css('background-color', _.settings.colors[0]);
         });
 
-        $('.js-fishbone .fish-slide').hover(function() {
-          console.log('hover');
-        })
+//         $('.js-fishbone .fish-slide').hover(function() {
+//           console.log('hover');
+//         })
         $('.js-fishbone .slide-next').hover(function scrollL() {
-          $(this).parent().find('.fish-main').animate({"scrollLeft":"+=200"},function(){
+          console.log("移动");
+          $(this).parent().find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
             var offsetLeft=$(this).parent().find('.fish-main').scrollLeft;
             var oLine=$(this).parent().find('.fish-line');
+            console.log("移动后");
             if(offsetLeft<oLine-main.width()){
               scrollL();
+              console.log("没移动完");
+            }
+          });
+           $('.js-fishbone .slide-prev').hover(function scrollL() {
+          console.log("移动");
+          $(this).parent().find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
+            var offsetLeft=$(this).parent().find('.fish-main').scrollLeft;
+            var oLine=$(this).parent().find('.fish-line');
+            console.log("移动后");
+            if(offsetLeft>0){
+              scrollL();
+              console.log("没移动完");
             }
           });
         })
