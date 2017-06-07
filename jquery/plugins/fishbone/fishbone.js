@@ -78,10 +78,14 @@
         $('.js-fishbone .fish-slide').hover(function() {
           console.log('hover');
         })
-        prev.on("mouseenter",function(){
-          $(".fishmain").animate({"scrollLeft":0})
-        }).on("mouseleave",function(){
-          $(".fishmain").stop();
+        $('.js-fishbone .slide-next').hover(function scrollL() {
+          $(this).parent().find('.fish-main').animate({"scrollLeft":"+=200"},function(){
+            var offsetLeft=$(this).parent().find('.fish-main').scrollLeft;
+            var oLine=$(this).parent().find('.fish-line');
+            if(offsetLeft<oLine-main.width()){
+              scrollL();
+            }
+          });
         })
         return this.reasonably();
       },
