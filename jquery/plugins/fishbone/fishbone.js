@@ -80,9 +80,9 @@
 //         })
         $('.js-fishbone .slide-next').hover(function scrollL() {
           console.log("移动");
-          $(this).parent().find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
-            var offsetLeft=$(this).parent().find('.fish-main').scrollLeft;
-            var oLine=$(this).parent().find('.fish-line');
+         $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
+            var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
+            var oLine=$('.js-fishbone .slide-next').parent().find('.fish-line');
             console.log("移动后");
             if(offsetLeft<oLine-main.width()){
               scrollL();
@@ -91,9 +91,9 @@
           });
            $('.js-fishbone .slide-prev').hover(function scrollL() {
           console.log("移动");
-          $(this).parent().find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
-            var offsetLeft=$(this).parent().find('.fish-main').scrollLeft;
-            var oLine=$(this).parent().find('.fish-line');
+          $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
+            var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
+            var oLine=$$('.js-fishbone .slide-next').parent().find('.fish-line');
             console.log("移动后");
             if(offsetLeft>0){
               scrollL();
