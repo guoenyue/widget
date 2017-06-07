@@ -38,8 +38,8 @@
             bfrag = $(document.createDocumentFragment()),
             tul = $('<ul class="fish-items"></ul>'),
             bul = $('<ul class="fish-items"></ul>'),
-            prev = $('<a href="#" class="fish-slide" data-slide="prev"><i class="fish-icon icon-arrow-left"></i></a>'),
-            next = $('<a href="#" class="fish-slide" data-slide="next"><i class="fish-icon icon-arrow-right"></i></a>'),
+            prev = $('<a href="#" class="fish-slide slide-prev" data-slide="prev"><i class="fish-icon icon-arrow-left"></i></a>'),
+            next = $('<a href="#" class="fish-slide slide-next" data-slide="next"><i class="fish-icon icon-arrow-right"></i></a>'),
             tli = null;
             bli = null;
 
