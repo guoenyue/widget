@@ -1,0 +1,101 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Trebuchet MS', 'Helvetica', 'Arial', 'sans-serif';
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'coolveticaregular', 'Trebuchet MS', 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul, li {
+  list-style-type: none;
+}
+a:focus, a:hover {
+  text-decoration: none;
+}
+.js-fishbone {
+  position: relative;
+  width: 100%;
+  padding: 20px 50px;
+  overflow-y: hidden;
+}
+.js-fishbone .fish-data {
+  position: relative;
+  text-align: left;
+}
+.js-fishbone .fish-data.bottom {
+  
+}
+.js-fishbone .fish-data .fish-items {
+  padding: 0;
+  margin: 0;
+}
+.js-fishbone .fish-data .fish-items .item {
+  position: relative;
+  padding: 20px;
+  margin-left: 20px;
+  color: #fefefe;
+  text-align: left;
+  border-left: 1px solid #fefefe;
+  display: inline-block;
+}
+.js-fishbone .fish-data .fish-items .item > em {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #fefefe;
+}
+.js-fishbone .fish-data.bottom .fish-items .item > em {
+  top: auto;
+  bottom: 0;
+  left: -10px;
+}
+.js-fishbone .fish-data .fish-items .item .item-title {
+
+}
+.js-fishbone .fish-data .fish-items .item .item-content {
+
+}
+.js-fishbone .fish-line {
+  height: 1px;
+  border: 1px dashed #fefefe;
+}
+.js-fishbone .fish-slide {
+
+}
+.js-fishbone .fish-slide .fish-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  width: 18px;
+  height: 32px;
+  display: block;
+}
+.js-fishbone .fish-slide .fish-icon .icon-arrow-right {
+  right: 0;
+  background: url('./images/arrow-right.png') no-repeat;
+}
+.js-fishbone .fish-slide .fish-icon .icon-arrow-left {
+  left: 0;
+  background: url('./images/arrow-left.png') no-repeat;
+}

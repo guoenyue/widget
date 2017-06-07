@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>鱼骨图插件——基于jQuery</title>
+    <link rel="stylesheet" href="./fishbone.css">
+    <style>
+      body {
+        background-color: #FFB600;
+      }
+      .contain {
+        width: 1024px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contain">
+      <div id="fish-bone"></div>
+    </div>
+  </body>
+  <script src="../jquery.js"></script>
+  <script src="./fishbone.js"></script>
+  <script type="text/javascript">
+    $('#fish-bone').fishBone();
+  </script>
+</html>
