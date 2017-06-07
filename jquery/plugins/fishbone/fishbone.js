@@ -115,6 +115,7 @@
            },closeSlide);
         function closeSlide(){
                 slideKey=false;
+                $('.js-fishbone').find('.fish-main').stop();
         }
         return this.reasonably();
       },
