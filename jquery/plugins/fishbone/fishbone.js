@@ -78,34 +78,44 @@
 //         $('.js-fishbone .fish-slide').hover(function() {
 //           console.log('hover');
 //         })
+        var slideKey=true;
         $('.js-fishbone .slide-next').hover(function scrollR() {
           console.log("移动");
+            slideKey=true;
             $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
               var offsetLeft=$('.fish-main').scrollLeft();
               var oLine=parseInt($('.fish-line').width());
               console.log("移动后");
                 console.log(offsetLeft,oLine-parseInt(main.width()));
-              if(offsetLeft<oLine-parseInt(main.width())){
+              if(slideKey&&offsetLeft<oLine-parseInt(main.width())){
                 scrollR();
                 console.log("没移动完");
                 console.log(offsetLeft,oLine-parseInt(main.width()));
+              }else{
+                slideKey=false;
               }
             });
-          });
+          },closeSlide);
           $('.js-fishbone .slide-prev').hover(function scrollL() {
             console.log("移动");
+            slideKey=false;
             $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
               var offsetLeft=$('.fish-main').scrollLeft();
               var oLine=$('.fish-line');
               console.log("移动后");
               console.log(offsetLeft);
-              if(offsetLeft>0){
+              if(slideKey&&offsetLeft>0){
                 scrollL();
                 console.log("没移动完");
                 console.log(offsetLeft);
+              }else{
+                slideKey=false;
               }
             });
-           });
+           },closeSlide);
+        function closeSlide(){
+                slideKey=false;
+        }
         return this.reasonably();
       },
       reasonably: function() {
