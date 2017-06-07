@@ -82,7 +82,7 @@
         $('.js-fishbone .slide-next').hover(function scrollR() {
           console.log("移动");
             slideKey=true;
-            $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
+            $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"+=200"},800,"linear",function(){
               var offsetLeft=$('.fish-main').scrollLeft();
               var oLine=parseInt($('.fish-line').width());
               console.log("移动后");
@@ -99,7 +99,7 @@
           $('.js-fishbone .slide-prev').hover(function scrollL() {
             console.log("移动");
             slideKey=true;
-            $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
+            $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"-=200"},800,"linear",function(){
               var offsetLeft=$('.fish-main').scrollLeft();
               var oLine=$('.fish-line');
               console.log("移动后");
