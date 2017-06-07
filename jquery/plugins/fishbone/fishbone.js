@@ -78,15 +78,16 @@
 //         $('.js-fishbone .fish-slide').hover(function() {
 //           console.log('hover');
 //         })
-        $('.js-fishbone .slide-next').hover(function scrollL() {
+        $('.js-fishbone .slide-next').hover(function scrollR() {
           console.log("移动");
             $('.js-fishbone').find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
               var offsetLeft=$('.fish-main').scrollLeft;
               var oLine=$('.fish-line');
               console.log("移动后");
               if(offsetLeft<oLine-main.width()){
-                scrollL();
+                scrollR();
                 console.log("没移动完");
+                console.log(offsetLeft,oLine-main.width());
               }
             });
           });
@@ -99,6 +100,7 @@
               if(offsetLeft>0){
                 scrollL();
                 console.log("没移动完");
+                console.log(offsetLeft);
               }
             });
            });
