@@ -80,26 +80,28 @@
 //         })
         $('.js-fishbone .slide-next').hover(function scrollL() {
           console.log("移动");
-         $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
-            var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
-            var oLine=$('.js-fishbone .slide-next').parent().find('.fish-line');
-            console.log("移动后");
-            if(offsetLeft<oLine-main.width()){
-              scrollL();
-              console.log("没移动完");
-            }
+            $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"+=200"},800,function(){
+              var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
+              var oLine=$('.js-fishbone .slide-next').parent().find('.fish-line');
+              console.log("移动后");
+              if(offsetLeft<oLine-main.width()){
+                scrollL();
+                console.log("没移动完");
+              }
+            });
           });
-           $('.js-fishbone .slide-prev').hover(function scrollL() {
-          console.log("移动");
-          $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
-            var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
-            var oLine=$$('.js-fishbone .slide-next').parent().find('.fish-line');
-            console.log("移动后");
-            if(offsetLeft>0){
-              scrollL();
-              console.log("没移动完");
-            }
-          });
+          $('.js-fishbone .slide-prev').hover(function scrollL() {
+            console.log("移动");
+            $('.js-fishbone .slide-next').parent().find('.fish-main').animate({"scrollLeft":"-=200"},800,function(){
+              var offsetLeft=$('.js-fishbone .slide-next').parent().find('.fish-main').scrollLeft;
+              var oLine=$$('.js-fishbone .slide-next').parent().find('.fish-line');
+              console.log("移动后");
+              if(offsetLeft>0){
+                scrollL();
+                console.log("没移动完");
+              }
+            });
+           });
         })
         return this.reasonably();
       },
